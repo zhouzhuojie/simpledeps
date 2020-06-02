@@ -30,6 +30,7 @@ type PackageManager struct {
 	installed   map[string]*Package
 }
 
+// NewPackageManager creates a new PackageManager
 func NewPackageManager() *PackageManager {
 	return &PackageManager{
 		allPackages: make(map[string]*Package),

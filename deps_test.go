@@ -13,13 +13,6 @@ func generateSamplePackageManager() *PackageManager {
 	// e -> c
 	// g -> h
 
-	// install a -> f,c,d,b,a // order
-	// remove c -> error
-	// # remove a -> a,b,c,d,f //
-	// install e -> e
-	// remove e -> e  // print all packages that are removed
-	// list -> a,b,c,d,f // no order
-
 	a := NewPackage("a")
 	b := NewPackage("b")
 	c := NewPackage("c")
@@ -43,7 +36,7 @@ func TestSimpleDeps(t *testing.T) {
 		// install a -> f,c,d,b,a // order
 		// remove c -> error
 		// install e -> e
-		// remove e -> e  // print all packages that are removed
+		// remove e -> e
 		// list -> a,b,c,d,f // no order
 		pm := generateSamplePackageManager()
 

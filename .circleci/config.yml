@@ -6,4 +6,5 @@ jobs:
     working_directory: /go/src/github.com/zhouzhuojie/simpledeps
     steps:
       - checkout
-      - run: go test -v ./...
+      - run: go test -race -coverprofile=coverage.txt -covermode=atomic -v ./...
+      - bash <(curl -s https://codecov.io/bash)

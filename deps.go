@@ -61,10 +61,7 @@ func (pm *PackageManager) Install(name string) ([]string, error) {
 		dep.dependedByInstalled[name] = struct{}{}
 
 		// do Install() recursion
-		path, err := pm.Install(dep.Name)
-		if err != nil {
-			return nil, err
-		}
+		path, _ := pm.Install(dep.Name)
 		ret = append(path, ret...)
 	}
 	ret = append(ret, name)

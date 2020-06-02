@@ -10,6 +10,9 @@
     <a href="https://godoc.org/github.com/zhouzhuojie/simpledeps" target="_blank">
         <img src="https://img.shields.io/badge/godoc-reference-green.svg">
     </a>
+    <a href="https://codecov.io/gh/zhouzhuojie/simpledeps" target="_blank">
+        <img src="https://codecov.io/gh/zhouzhuojie/simpledeps/branch/master/graph/badge.svg">
+    </a>
 </p>
 
 

@@ -7,4 +7,4 @@ jobs:
     steps:
       - checkout
       - run: go test -race -coverprofile=coverage.txt -covermode=atomic -v ./...
-      - bash <(curl -s https://codecov.io/bash)
+      - run: bash <(curl -s https://codecov.io/bash)

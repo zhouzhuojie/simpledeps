@@ -96,5 +96,44 @@ func TestSimpleDeps(t *testing.T) {
 		removePath, err = pm.Remove("e")
 		assert.NoError(t, err)
 		assert.Equal(t, []string{"e", "c", "f"}, removePath)
+
+		// should be able to list the current install packages, which is empty
+		list := pm.List()
+		assert.ElementsMatch(t, []string{}, list)
+	})
+
+	t.Run("happy code path for g", func(t *testing.T) {
+		pm := generateSamplePackageManager()
+
+		// should be able to install g
+		installPath, err := pm.Install("g")
+		assert.NoError(t, err)
+		assert.Equal(t, []string{"h", "g"}, installPath)
+
+		// cannot remove h without removing g
+		_, err = pm.Remove("h")
+		assert.Error(t, err)
+
+		// remove g
+		removePath, err := pm.Remove("g")
+		assert.NoError(t, err)
+		assert.Equal(t, []string{"g", "h"}, removePath)
+
+		// should be able to list the current install packages, which is empty
+		list := pm.List()
+		assert.ElementsMatch(t, []string{}, list)
+	})
+
+	t.Run("code path for installing non-existing package", func(t *testing.T) {
+		pm := NewPackageManager()
+		_, err := pm.Install("x")
+		assert.Error(t, err)
+	})
+
+	t.Run("code path for removing not installed package", func(t *testing.T) {
+		pm := NewPackageManager()
+		path, err := pm.Remove("x")
+		assert.NoError(t, err)
+		assert.Zero(t, path)
 	})
 }
